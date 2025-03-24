@@ -1,37 +1,20 @@
 import express from "express"
+import fromRouter from "./routes/form-route.js"
+import dotenv from "dotenv"
+import mongoose from "mongoose"
+
+dotenv.config()
+const db_connect = process.env.DB_CONN
+
 
 const app = express()
-const port = 8000
+const port = process.env.PORT
 
-app.use(express.json())
+app.use("/api/v1/form", fromRouter)
 
-const data = {
-  "name": "haider"
+if (!db_connect) {
+  console.log("err in db_connect");
 }
-
-app.get("/api/v1/data", (req, res) => {
-  res.status(200).json({
-    status: "succss",
-    data: data
-  })
-})
-
-app.post("/api/v1/form", (req, res) => {
-  console.log("post");
-
-  try {
-    const data = req.body
-    console.log(data);
-    res.status(201).json({
-      status: "success",
-      data: data
-    })
-  } catch (err) {
-    res.status(401).json({
-      status: "fail",
-      err: err.message
-    })
-  }
-})
+mongoose.connect(db_connect)
 
 app.listen(port)
