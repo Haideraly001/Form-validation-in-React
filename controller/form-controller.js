@@ -2,7 +2,6 @@ import model from '../model/form-model.js'
 
 const getAllForms = async (req, res) => {
   const data = await model.find()
-  console.log(data);
 
   res.status(200).json({
     status: "succss",
