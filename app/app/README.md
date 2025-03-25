@@ -12,3 +12,9 @@ next task
 --> work on route and route params
 --> product api get data in grid and then create route params with that specific data in routes
 --> products filter with category
+
+next Task
+-movie api with array of user
+-get post patch delete
+-and then work on req.query
+-filter -> sort -> fields -> pagenation -> class & objs
