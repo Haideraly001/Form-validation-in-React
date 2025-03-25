@@ -41,7 +41,7 @@ const Profile = () => {
               <td>{el.email}</td>
               <td>{el.phone}</td>
               <td>{el.address}</td>
-              <button onClick={() => handleNavigation(el._id)}>Prev</button>
+              <td onClick={() => handleNavigation(el._id)}>Prev</td>
             </tr>
           </tbody>
         ))}

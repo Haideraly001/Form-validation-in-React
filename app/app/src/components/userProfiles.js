@@ -9,6 +9,7 @@ const UserProfiles = () => {
   return (
     <div>
       <h5>User Profiles</h5>
+      <h2> {id}</h2>
     </div>
   )
 }
