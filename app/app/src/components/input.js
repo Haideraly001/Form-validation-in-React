@@ -27,11 +27,18 @@ const InputProfiles = () => {
 
   }
 
+  const handleChange = (e) => {
+    setInput({
+      ...input,
+      [e.target.id]: e.target.value
+    })
+  }
+
   return (
     <div className='inputProfile'>
       <h4>Input User</h4>
       <form action="" onSubmit={handleSubmit} >
-        <input type="text" placeholder='Enter Name' value={input.name} id="Name" onChange={(e) => setInput({
+        {/* <input type="text" placeholder='Enter Name' value={input.name} id="Name" onChange={(e) => setInput({
           ...input, name: e.target.value
         })} />
         <input type="text" placeholder='Enter Email' value={input.email} id="email" onChange={(e) => setInput({
@@ -42,7 +49,11 @@ const InputProfiles = () => {
         })} />
         <input type="text" placeholder='Enter Address' value={input.address} id="address" onChange={(e) => setInput({
           ...input, address: e.target.value
-        })} />
+        })} /> */}
+        <input type="text" placeholder='Enter Name' value={input.name} id="name" onChange={handleChange} />
+        <input type="text" placeholder='Enter Email' value={input.email} id="email" onChange={handleChange} />
+        <input type="text" placeholder='Enter Phone' value={input.phone} id="phone" onChange={handleChange} />
+        <input type="text" placeholder='Enter Address' value={input.address} id="address" onChange={handleChange} />
         <button type='submit' > submit</button>
       </form>
     </div>

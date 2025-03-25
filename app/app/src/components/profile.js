@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react"
-import InputProfiles from "./input"
 
 const Profile = () => {
   const [user, setUser] = useState([])
