@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react"
+import { useNavigate } from "react-router-dom"
 
 const Profile = () => {
   const [user, setUser] = useState([])
+  const navigate = useNavigate()
 
   const userData = async () => {
     const resp = await fetch("http://localhost:8000/api/v1/form")
@@ -14,26 +16,32 @@ const Profile = () => {
     userData()
   }, [])
 
+  const handleNavigation = (id) => {
+    navigate(`/user-table/${id}`)
+  }
+
   return (
     <div className="userShow">
       <h1>Haider</h1>
 
       <table>
         <thead>
-          <tr>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Phone</th>
-            <th>Address</th>
+          <tr >
+            <th >Name</th>
+            <th >Email</th>
+            <th >Phone</th>
+            <th >Address</th>
+            <th >Action</th>
           </tr>
         </thead>
         {user.map((el) => (
-          <tbody>
-            <tr key={el.id}>
+          <tbody key={el?._id}>
+            <tr >
               <td>{el.name}</td>
               <td>{el.email}</td>
               <td>{el.phone}</td>
               <td>{el.address}</td>
+              <button onClick={() => handleNavigation(el._id)}>Prev</button>
             </tr>
           </tbody>
         ))}
