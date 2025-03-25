@@ -36,3 +36,19 @@
     transform: rotate(360deg);
   }
 }
+
+.user {
+  width: 100%;
+  gap: 20px;
+}
+
+.inputProfile {
+  border: 2px solid;
+  width: 50%;
+  margin: 10px 10px;
+}
+.userShow {
+  width: 100%;
+  margin: 10px 10px;
+  border: 2px solid;
+}
