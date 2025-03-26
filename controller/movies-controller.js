@@ -9,7 +9,7 @@ const topFivehighestRating = (req, res, next) => {
 
 const getAllMovies = async (req, res) => {
   try {
-    let queryData = req.query
+    let queryData = { ...req.query }
     console.log(queryData);
     // const allMovies = await moviesModal.find({ price: { "$gte": +req.query.price } })
     // const allMovies = await moviesModal.find({ price: +req.query.price  })
@@ -26,14 +26,16 @@ const getAllMovies = async (req, res) => {
     // console.log("after sort", queryData);
 
 
-    let queryStr = JSON.stringify(queryData)
+    let queryStr = JSON.stringify(req.query)
     queryStr = queryStr.replace(/(gte|gt|lte|lt)/g, (match) => `$${match}`)
     queryStr = JSON.parse(queryStr)
+
+    console.log("queryStr", queryStr);
 
 
     const { sort, field, page, limit, ...filters } = queryStr
 
-
+    let queryFields = moviesModal.find(filters)
 
     if (req.query.sort) {
       queryFields = queryFields.sort(req.query.sort)
@@ -52,7 +54,6 @@ const getAllMovies = async (req, res) => {
     const pageNum = +req.query.page || 1;
     const limitNum = Number(req.query.limit) || 10;
     const skip = (pageNum - 1) * limitNum
-    console.log(skip, limit);
 
     queryFields = queryFields.skip(skip).limit(limit)
 
