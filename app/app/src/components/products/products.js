@@ -8,6 +8,7 @@ const Products = () => {
   const [products, setProducts] = useState([])
   const [category, setCategory] = useState([])
   const [allProducts, setAllProducts] = useState([]);
+  const [inputForm, setInputForm] = useState("")
 
   const getProducts = async () => {
     const resp = await fetch("https://dummyjson.com/products")
@@ -37,18 +38,33 @@ const Products = () => {
   useEffect(() => {
     if (products.length > 0) {
       const unqiqueCategory = ["All", ...new Set(products.map((el) => el.category))]
-      console.log(unqiqueCategory);
       setCategory(unqiqueCategory)
-
     }
   }, [products, allProducts])
+
+  const handleChange = (e) => {
+    const value = e.target.value
+    setInputForm(value)
+    const filterInput = allProducts.filter((el) =>
+      el.title.toLowerCase().includes(value.toLowerCase())
+    )
+    setProducts(filterInput)
+  }
 
   return (
     <div>
       user Products
-      <hr />
 
+      <hr />
+      <input
+        style={{ padding: "10px 5px", margin: "10px" }}
+        type="text"
+        value={inputForm}
+        placeholder='Enter value'
+        onChange={handleChange}
+      />
       <div className="buttonCategory">
+
         {category.map((category, index) => (
           <>
             <button key={index} onClick={() => handlefiltercategory(category)}>{category}</button>

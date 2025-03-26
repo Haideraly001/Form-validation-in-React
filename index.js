@@ -1,5 +1,6 @@
 import express from "express"
 import fromRouter from "./routes/form-route.js"
+import moviesRouter from './routes/movies-router.js'
 import dotenv from "dotenv"
 import mongoose from "mongoose"
 import path from 'path';
@@ -21,11 +22,12 @@ const port = process.env.PORT
 
 app.use(express.static(path.join(__dirname, "./app/app/build/index.html")))
 
-app.use("/api/v1/form", fromRouter)
-
 if (!db_connect) {
   console.log("err in db_connect");
 }
 mongoose.connect(db_connect)
+
+app.use("/api/v1/form", fromRouter)
+app.use("/api/v1/movies", moviesRouter)
 
 app.listen(port)

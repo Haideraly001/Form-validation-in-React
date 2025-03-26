@@ -14,6 +14,10 @@ next task
 --> products filter with category
 
 next Task
+frontend
+-input field filter
+-add category to filter on click by category
+backend
 -movie api with array of user
 -get post patch delete
 -and then work on req.query
