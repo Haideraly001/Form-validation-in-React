@@ -8,9 +8,9 @@ route.use(express.json())
 
 route.get("/", getAllMovies)
 route.post("/", createMovie)
+route.get("/top-five", topFivehighestRating, getAllMovies)
 route.get("/:id", findById)
 route.patch("/:id", updateMovie)
-route.get("/top-five", topFivehighestRating, getAllMovies)
 
 
 export default route
