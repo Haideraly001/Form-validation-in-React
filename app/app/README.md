@@ -22,3 +22,12 @@ backend
 -get post patch delete
 -and then work on req.query
 -filter -> sort -> fields -> pagenation -> class & objs
+
+---26 march 2025
+backend working on movies modal api
+create 7 obj then get-> post -> update -> get by id -> by myself
+find method
+then advance find filter method myself -> then gte gt lt lte myself
+then add sort -> field method myself
+youtube on paganation and then erro on middleware
+all myself

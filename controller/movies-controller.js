@@ -33,7 +33,7 @@ const getAllMovies = async (req, res) => {
 
     const { sort, field, page, limit, ...filters } = queryStr
 
-    let queryFields = moviesModal.find(filters)
+
 
     if (req.query.sort) {
       queryFields = queryFields.sort(req.query.sort)
