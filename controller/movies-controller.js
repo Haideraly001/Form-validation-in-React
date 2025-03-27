@@ -1,6 +1,7 @@
 import moviesModal from '../model/movies-modal.js'
 
 
+
 const topFivehighestRating = (req, res, next) => {
   req.query.limit = "5",
     req.query.sort = "-rating",

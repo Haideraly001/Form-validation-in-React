@@ -1,6 +1,7 @@
 import express from "express"
 import fromRouter from "./routes/form-route.js"
 import moviesRouter from './routes/movies-router.js'
+import userRouter from './routes/user-route.js'
 import dotenv from "dotenv"
 import mongoose from "mongoose"
 import path from 'path';
@@ -29,5 +30,6 @@ mongoose.connect(db_connect)
 
 app.use("/api/v1/form", fromRouter)
 app.use("/api/v1/movies", moviesRouter)
+app.use("/api/v1/auth", userRouter)
 
 app.listen(port)
