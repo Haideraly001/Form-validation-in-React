@@ -2,6 +2,7 @@ import moviesModal from '../model/movies-modal.js'
 
 
 
+
 const topFivehighestRating = (req, res, next) => {
   req.query.limit = "5",
     req.query.sort = "-rating",
@@ -122,6 +123,23 @@ const updateMovie = async (req, res) => {
   }
 }
 
+const uploadFile = async (req, res) => {
+  try {
+    if (!req.file) {
+      return res.status(400).json({ message: "No file uploaded" });
+    }
+
+    console.log("File Uploaded:", req.file);
+
+    res.json({
+      message: "File uploaded successfully!",
+      file: req.file
+    });
+  } catch (error) {
+    res.status(500).json({ message: "File upload failed", error: error.message });
+  }
+};
+
 export {
-  getAllMovies, createMovie, findById, updateMovie, topFivehighestRating
+  getAllMovies, createMovie, findById, updateMovie, topFivehighestRating, uploadFile
 }

@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 import validator from "validator"
 import bcrypt from "bcrypt"
+import crypto from "crypto"
 
 const userSchema = new mongoose.Schema({
   name: {
@@ -29,7 +30,9 @@ const userSchema = new mongoose.Schema({
       },
       message: "conform password is not match"
     }
-  }
+  },
+  resetPasswordToken: String,
+  resetPasswordTokenExpair: Date,
 })
 
 userSchema.pre("save", async function (next) {
@@ -40,7 +43,12 @@ userSchema.pre("save", async function (next) {
 })
 
 userSchema.methods.passwordMatch = async function (password, userPassword) {
-  return await bcrypt.hash(password, userPassword)
+  return await bcrypt.compare(password, userPassword)
+}
+
+
+userSchema.methods.randomToken = async function () {
+  return await crypto.randomBytes(64).toString('hex');
 }
 
 const userModal = new mongoose.model("user-auth", userSchema)
