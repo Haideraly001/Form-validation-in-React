@@ -11,7 +11,7 @@ import cors from "cors"
 const app = express()
 
 dotenv.config()
-const db_connect = process.env.DB_CONN
+const db_connect = process.env.local.DB_CONN
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -19,7 +19,7 @@ const __dirname = path.dirname(__filename);
 
 app.use(cors())
 
-const port = process.env.PORT
+const port = process.env.local.PORT
 
 app.use(express.static(path.join(__dirname, "./app/app/build/index.html")))
 

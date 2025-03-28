@@ -5,23 +5,24 @@ const emailSender = async (option) => {
   try {
     // mailTrap
     // const transporter = nodemailer.createTransport({
-    //   host: "sandbox.smtp.mailtrap.io",
-    //   port: 2525,
+    //   host: process.env.local.SMTP_MailTrap_HOST,
+    //   port: process.env.local.SMTP_MailTrap_PORT,
     //   secure: false,
     //   auth: {
-    //     user: "88554b773b0dec",
-    //     pass: "eecd8ae41fab47",
+    //     user: process.env.local.SMTP_MailTrap_USER,
+    //     pass: process.env.local.SMTP_MailTrap_PASS,
     //   },
     // });
 
+
     // brevo 
     const transporter = nodemailer.createTransport({
-      host: "smtp-relay.brevo.com",
-      port: 587,
+      host: process.env.local.SMTP_BREVO_HOST,
+      port: process.env.local.SMTP_BREVO_PORT,
       secure: false,
       auth: {
-        user: "890eec001@smtp-brevo.com",
-        pass: "kDrmK3OaCLt7P5wN",
+        user: process.env.local.SMTP_BREVO_USER,
+        pass: process.env.local.SMTP_BREVO_PASS,
       },
     });
 
