@@ -1,5 +1,11 @@
 import seriesModal from "../model/series-modal.js"
 
+const aliasMiddleware = (req, res, next) => {
+  req.query.sort = "price"
+  req.query.limit = 4
+  next()
+}
+
 const getAllSeries = async (req, res) => {
 
   let query = { ...req.query }
@@ -33,17 +39,33 @@ const getAllSeries = async (req, res) => {
     query = JSON.stringify(query)
     query = query.replace(/(gte|gt|lte|lt)/g, (match) => `$${match}`)
     query = JSON.parse(query)
-    console.log("query", query);
+
 
     const { sort, field, limit, page, ...filters } = query
     // const allseries = await seriesModal.find(filters)
-    const allseries = seriesModal.find(filters)
-
-
-    if (req.quer.sort) {
-
+    let queries = seriesModal.find(filters)
+    if (req.query.sort) {
+      const multipule = req.query.sort.split(",").join(" ")
+      queries = queries.sort(multipule)
+    } else {
+      queries = queries.sort("-createdAt")
     }
 
+    if (req.query.field) {
+      const multipule = req.query.field.split(",").join(" ")
+      queries = queries.select(multipule)
+    } else {
+      const multipulechange = ["-__v", "-id"].join(" ")
+      queries = queries.select(multipulechange)
+    }
+
+    const pageNum = req.query.page || 1
+    const limitNum = req.query.limit || 10
+
+    const skip = (pageNum - 1) * limitNum
+
+    queries = queries.skip(skip).limit(limitNum)
+    const allseries = await queries
 
 
 
@@ -140,5 +162,6 @@ export {
   getAllSeries,
   addSeries,
   updateSeries,
-  getOneSeries
+  getOneSeries,
+  aliasMiddleware
 }
