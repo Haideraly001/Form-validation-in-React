@@ -17,12 +17,12 @@ const emailSender = async (option) => {
 
     // brevo 
     const transporter = nodemailer.createTransport({
-      host: process.env.local.SMTP_BREVO_HOST,
-      port: process.env.local.SMTP_BREVO_PORT,
+      host: process.env.SMTP_BREVO_HOST,
+      port: process.env.SMTP_BREVO_PORT,
       secure: false,
       auth: {
-        user: process.env.local.SMTP_BREVO_USER,
-        pass: process.env.local.SMTP_BREVO_PASS,
+        user: process.env.SMTP_BREVO_USER,
+        pass: process.env.SMTP_BREVO_PASS,
       },
     });
 

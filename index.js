@@ -2,6 +2,7 @@ import express from "express"
 import fromRouter from "./routes/form-route.js"
 import moviesRouter from './routes/movies-router.js'
 import userRouter from './routes/user-route.js'
+import seriesRouter from './routes/series-route.js'
 import dotenv from "dotenv"
 import mongoose from "mongoose"
 import path from 'path';
@@ -11,7 +12,7 @@ import cors from "cors"
 const app = express()
 
 dotenv.config()
-const db_connect = process.env.local.DB_CONN
+const db_connect = process.env.DB_CONN
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -19,7 +20,7 @@ const __dirname = path.dirname(__filename);
 
 app.use(cors())
 
-const port = process.env.local.PORT
+const port = process.env.PORT
 
 app.use(express.static(path.join(__dirname, "./app/app/build/index.html")))
 
@@ -31,5 +32,6 @@ mongoose.connect(db_connect)
 app.use("/api/v1/form", fromRouter)
 app.use("/api/v1/movies", moviesRouter)
 app.use("/api/v1/auth", userRouter)
+app.use("/api/v1/series", seriesRouter)
 
 app.listen(port)

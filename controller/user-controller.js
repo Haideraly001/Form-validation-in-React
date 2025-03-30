@@ -10,8 +10,6 @@ const jwtToken = function (id) {
   return token
 }
 
-
-
 const signupUser = async (req, res) => {
   try {
     const userCreate = await userModal.create(req.body)
