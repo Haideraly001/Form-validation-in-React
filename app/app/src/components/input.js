@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import Image from './images/image'
 
 const InputProfiles = () => {
 
@@ -8,6 +9,7 @@ const InputProfiles = () => {
     phone: "",
     address: ""
   })
+
 
   const handleSubmit = async (e) => {
 
@@ -34,6 +36,8 @@ const InputProfiles = () => {
     })
   }
 
+
+
   return (
     <div className='inputProfile'>
       <h4>Input User</h4>
@@ -56,6 +60,8 @@ const InputProfiles = () => {
         <input type="text" placeholder='Enter Address' value={input.address} id="address" onChange={handleChange} />
         <button type='submit' > submit</button>
       </form>
+
+      <Image />
     </div>
   )
 }

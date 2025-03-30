@@ -6,6 +6,7 @@ const UserProfiles = () => {
 
   console.log(id);
 
+
   return (
     <div>
       <h5>User Profiles</h5>
