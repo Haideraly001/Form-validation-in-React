@@ -1,31 +1,26 @@
 import express from "express"
-import { upload } from "../utility/multer.js"
+import { uploadMultipuleFile } from "../utility/Cloudinary.js"
 import imageModal from "../model/image-model.js"
 
 const route = express.Router()
 
-route.get("/", async (req, res) => {
-  const image = await imageModal.find()
-  res.json({
-    message: "File found successfully",
-    fileUrl: image,
-  });
-})
+// route.get("/", async (req, res) => {
+//   const image = await imageModal.find()
+//   res.json({
+//     message: "File found successfully",
+//     fileUrl: image,
+//   });
+// })
 
 
-route.post("/", upload.single("image"), async (req, res) => {
-  const fileUrl = `/uploads/${req.file.filename}`;
-
-  const image = await imageModal.create({
-    image: fileUrl
-  })
+route.post("/", uploadMultipuleFile, async (req, res) => {
 
   res.json({
     success: true,
     message: "File uploaded successfully",
-    fileUrl: image,
+    fileUrl: req.files,
   });
-  console.log(req.file);
+  console.log(req.files);
 
 })
 
