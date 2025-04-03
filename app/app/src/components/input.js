@@ -7,7 +7,8 @@ const InputProfiles = () => {
     name: "",
     email: "",
     phone: "",
-    address: ""
+    address: "",
+    fileImage: null
   })
 
 
@@ -30,11 +31,21 @@ const InputProfiles = () => {
   }
 
   const handleChange = (e) => {
-    setInput({
-      ...input,
-      [e.target.id]: e.target.value
-    })
-  }
+    if (e.target.type === "file") {
+      console.log(e.target.files[0]);
+
+      setInput({
+        ...input,
+        fileImage: e.target.files[0],
+      });
+    } else {
+      setInput({
+        ...input,
+        [e.target.id]: e.target.value,
+      });
+    }
+  };
+
 
 
 
@@ -58,6 +69,7 @@ const InputProfiles = () => {
         <input type="text" placeholder='Enter Email' value={input.email} id="email" onChange={handleChange} />
         <input type="text" placeholder='Enter Phone' value={input.phone} id="phone" onChange={handleChange} />
         <input type="text" placeholder='Enter Address' value={input.address} id="address" onChange={handleChange} />
+        <input type="file" id="fileImage" onChange={handleChange} />
         <button type='submit' > submit</button>
       </form>
 
